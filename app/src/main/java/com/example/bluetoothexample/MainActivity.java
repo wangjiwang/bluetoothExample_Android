@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     showToast("使你的设备可以被周围蓝牙发现");
                     Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
                     startActivityForResult(intent,REQUEST_DISCOVER_BT);
+                    mBlueIv.setImageResource(R.drawable.ic_action_on);
                 }
             }
         });
@@ -123,20 +124,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        switch (requestCode){
+        switch (requestCode) {
             case REQUEST_ENABLE_BT:
-                if(requestCode != RESULT_OK){
+                if (requestCode != RESULT_OK) {
                     //bluetooth is on
                     mBlueIv.setImageResource(R.drawable.ic_action_on);
                     showToast("蓝牙：开启");
-                }
-                else{
+                } else {
                     //user denied to turn bluetooth on
                     showToast("无法打开蓝牙");
                 }
                 break;
         }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     //toast message function
